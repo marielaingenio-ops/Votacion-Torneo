@@ -107,7 +107,7 @@ if vista == "⚙️ Director de Torneo":
             st.success("✅ Archivo 'torneo.dat' leído correctamente.")
             
             st.divider()
-            st.subheader("1. Separar Arqueros")
+            st.subheader("1. Separar arqueros")
             st.markdown("Selecciona los arqueros de cada equipo para que no aparezcan en la lista de jugadores de campo.")
             
             arqueros_actuales = cargar_arqueros()
@@ -125,7 +125,7 @@ if vista == "⚙️ Director de Torneo":
                     )
                     nuevos_arqueros.extend(seleccion)
                 
-                if st.button("💾 Guardar Configuración de Arqueros", type="primary"):
+                if st.button("💾 Guardar configuración de arqueros", type="primary"):
                     guardar_arqueros(nuevos_arqueros)
                     st.success("¡Listas actualizadas y separadas con éxito!")
                     st.rerun()
@@ -136,12 +136,12 @@ if vista == "⚙️ Director de Torneo":
             if not df_votos.empty:
                 col1, col2 = st.columns(2)
                 with col1:
-                    st.markdown("##### 🥇 Ranking Jugadores de Campo")
+                    st.markdown("##### 🥇 Ranking jugadores de campo")
                     votos_j = df_votos[df_votos["Categoria"] == "Jugador de Campo"]["Candidato_Elegido"].value_counts().reset_index()
                     st.dataframe(votos_j, hide_index=True)
                     
                 with col2:
-                    st.markdown("##### 🧤 Ranking Arqueros")
+                    st.markdown("##### 🧤 Ranking arqueros")
                     votos_a = df_votos[df_votos["Categoria"] == "Arquero"]["Candidato_Elegido"].value_counts().reset_index()
                     st.dataframe(votos_a, hide_index=True)
                     
@@ -186,10 +186,10 @@ elif vista == "🏆 Votación Pública":
                 identificador_unico = f"{equipo_votante} - {jefe_votante}"
                 
                 if identificador_unico in jefes_que_votaron:
-                    st.error("🚨 El voto de tu equipo ya fue registrado en la mesa.")
+                    st.error("🚨 El voto de tu equipo ya fue registrado por el Director.")
                 else:
                     st.divider()
-                    st.subheader("Selección de Candidatos")
+                    st.subheader("Selección de candidatos")
                     
                     def elegir_candidato(titulo, key, es_arquero=False):
                         eq = st.selectbox(f"Club del {titulo}:", lista_equipos, key=f"eq_{key}")
@@ -213,7 +213,7 @@ elif vista == "🏆 Votación Pública":
 
                     col1, col2 = st.columns(2)
                     with col1:
-                        st.markdown("#### 🏑 Jugadores de Campo")
+                        st.markdown("#### 🏑 Jugadores de campo")
                         jc1 = elegir_candidato("Jugador 1", "jc1", es_arquero=False)
                         jc2 = elegir_candidato("Jugador 2", "jc2", es_arquero=False)
                         
