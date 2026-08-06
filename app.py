@@ -223,7 +223,7 @@ elif vista == "🏆 Votación Pública":
                         arq2 = elegir_candidato("Arquero 2", "arq2", es_arquero=True)
                         
                     st.divider()
-                    if st.button("🗳️ Enviar Votos a la Mesa", type="primary", use_container_width=True):
+                    if st.button("🗳️ Enviar votos al Director", type="primary", use_container_width=True):
                         selecciones = [jc1, jc2, arq1, arq2]
                         
                         if None in selecciones:
@@ -238,13 +238,9 @@ elif vista == "🏆 Votación Pública":
                                 {"Identificador_Votante": identificador_unico, "Categoria": "Arquero", "Candidato_Elegido": arq2},
                             ])
                             
-                            # Actualizamos la planilla
+                           # Actualizamos la planilla
                             df_actualizado = pd.concat([df_votos, nuevos_votos], ignore_index=True)
                             conn.update(data=df_actualizado)
                             
                             st.balloons()
-                            st.success("✅ ¡Tus votos han sido enviados con éxito! La pantalla se reiniciará en unos segundos...")
-                            
-                            import time
-                            time.sleep(4)  # Espera 4 segundos para que se vean los globos
-                            st.rerun()     # Ahora sí, limpia la pantalla
+                            st.success("✅ Tus votos han sido enviados. Puedes cerrar esta ventana.")
