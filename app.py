@@ -155,7 +155,7 @@ if vista == "⚙️ Director de Torneo":
 # VISTA: VOTACIÓN PÚBLICA (JEFES DE EQUIPO)
 # ==========================================
 elif vista == "🏆 Votación pública":
-col_logo, col_texto = st.columns([1, 5])
+    col_logo, col_texto = st.columns([1, 5])
 with col_logo:
     st.image("logo.png", use_container_width=True)
 with col_texto:
