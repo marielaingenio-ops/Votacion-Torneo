@@ -82,7 +82,7 @@ def procesar_dat(ruta_archivo):
 datos = procesar_dat("torneo.dat")
 
 # --- BARRA LATERAL ---
-st.sidebar.image("https://cdn-icons-png.flaticon.com/512/5482/5482165.png", width=100)
+st.sidebar.image("logo.png", width=150)
 st.sidebar.title("Menú del Torneo")
 
 param_vista = st.query_params.get("vista", "menu")
@@ -93,9 +93,9 @@ else:
     vista = st.sidebar.radio("Navegación:", ["🏆 Votación Pública", "⚙️ Mesa de Control"])
 
 # ==========================================
-# VISTA: MESA DE CONTROL (ADMINISTRADOR)
+# VISTA: DIRECTOR DE TORNEO (ADMINISTRADOR)
 # ==========================================
-if vista == "⚙️ Mesa de Control":
+if vista == "⚙️ Director de Torneo":
     st.title("Panel de Administración")
     password = st.text_input("Ingrese contraseña de Director/a de Torneo:", type="password")
     
@@ -154,11 +154,15 @@ if vista == "⚙️ Mesa de Control":
 # ==========================================
 # VISTA: VOTACIÓN PÚBLICA (JEFES DE EQUIPO)
 # ==========================================
-elif vista == "🏆 Votación Pública":
-    st.title("Elección de los Mejores del Torneo")
+elif vista == "🏆 Votación pública":
+    col_logo, col_texto = st.columns([1, 5])
+    with col_logo:
+        st.image("logo.png", use_container_width=True)
+        with col_texto:
+    st.title("Elección de los mejores del torneo")
     
     if not datos:
-        st.warning("⏳ La mesa de control está configurando el sistema.")
+        st.warning("⏳ El Director de Torneo está configurando el sistema.")
     else:
         lista_equipos = ["-- Seleccionar --"] + sorted(list(datos.keys()))
         arqueros_config = cargar_arqueros()
@@ -237,6 +241,6 @@ elif vista == "🏆 Votación Pública":
                             
                             df_actualizado = pd.concat([df_votos, nuevos_votos], ignore_index=True)
                             conn.update(data=df_actualizado)
-                            
+                            st.balloons() # ¡Agregamos la celebración aquí!
                             st.success("✅ ¡Tus votos han sido enviados! Puedes cerrar esta ventana.")
                             st.rerun()
