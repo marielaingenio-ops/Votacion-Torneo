@@ -150,33 +150,46 @@ if vista == "⚙️ Director de Torneo":
                     st.write(f"- {jefe}")
             else:
                 st.info("Aún no hay votos registrados en la planilla.")
-if vista == "⚙️ Director de Torneo":              
-    st.divider()
-    st.subheader("🏆 Resultados Finales")
-    
-if not df_votos.empty:
-        jugador_ganador = df_votos["Mejor Jugador"].value_counts().idxmax()
-        votos_jugador = df_votos["Mejor Jugador"].value_counts().max()
-        
-        arquero_ganador = df_votos["Mejor Arquero"].value_counts().idxmax()
-        votos_arquero = df_votos["Mejor Arquero"].value_counts().max()
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            st.success(f"🏑 **Jugador más votado:**\n\n{jugador_ganador} ({votos_jugador} votos)")
-        with col2:
-            st.info(f"🧤 **Arquero más votado:**\n\n{arquero_ganador} ({votos_arquero} votos)")
-else:
-        st.warning("Aún no se han recibido votos para calcular a los ganadores.")
+                
+            # --- RESULTADOS FINALES DENTRO DEL PANEL DEL DIRECTOR ---
+            st.divider()
+            st.subheader("🏆 Resultados Finales")
+            
+            if not df_votos.empty:
+                # Filtramos los votos por categoría para calcular correctamente
+                votos_jc = df_votos[df_votos["Categoria"] == "Jugador de Campo"]["Candidato_Elegido"]
+                votos_arq = df_votos[df_votos["Categoria"] == "Arquero"]["Candidato_Elegido"]
+                
+                col_res1, col_res2 = st.columns(2)
+                
+                with col_res1:
+                    if not votos_jc.empty:
+                        jugador_ganador = votos_jc.value_counts().idxmax()
+                        votos_jugador = votos_jc.value_counts().max()
+                        st.success(f"🏑 **Jugador más votado:**\n\n{jugador_ganador} ({votos_jugador} votos)")
+                    else:
+                        st.info("Aún no hay votos para jugadores.")
+                        
+                with col_res2:
+                    if not votos_arq.empty:
+                        arquero_ganador = votos_arq.value_counts().idxmax()
+                        votos_arquero = votos_arq.value_counts().max()
+                        st.info(f"🧤 **Arquero más votado:**\n\n{arquero_ganador} ({votos_arquero} votos)")
+                    else:
+                        st.info("Aún no hay votos para arqueros.")
+            else:
+                st.warning("Aún no se han recibido votos para calcular a los ganadores.")
+
 # ==========================================
 # VISTA: VOTACIÓN PÚBLICA (JEFES DE EQUIPO)
 # ==========================================
- elif vista == "🏆 Votación Pública":
+elif vista == "🏆 Votación Pública":
     col_logo, col_texto = st.columns([1, 5])
     with col_logo:
         st.image("logo.png", use_container_width=True)
     with col_texto:
         st.title("Elección de los mejores del Torneo")
+        
     if not datos:
         st.warning("⏳ El Director de Torneo está configurando el sistema.")
     else:
@@ -255,29 +268,9 @@ else:
                                 {"Identificador_Votante": identificador_unico, "Categoria": "Arquero", "Candidato_Elegido": arq2},
                             ])
                             
-                           # Actualizamos la planilla
+                            # Actualizamos la planilla
                             df_actualizado = pd.concat([df_votos, nuevos_votos], ignore_index=True)
                             conn.update(data=df_actualizado)
                             
                             st.balloons()
                             st.success("✅ Tus votos han sido enviados. Puedes cerrar esta ventana.")
-                            st.divider() # Esto dibuja una línea separadora elegante
-    st.subheader("🏆 Resultados Finales")
-    
-    # Verificamos que la planilla no esté vacía para que no dé error
-    if not df_votos.empty:
-        # Calculamos los más votados
-        jugador_ganador = df_votos["Mejor Jugador"].value_counts().idxmax()
-        votos_jugador = df_votos["Mejor Jugador"].value_counts().max()
-        
-        arquero_ganador = df_votos["Mejor Arquero"].value_counts().idxmax()
-        votos_arquero = df_votos["Mejor Arquero"].value_counts().max()
-        
-        # Mostramos los resultados en dos cajitas de colores
-        col1, col2 = st.columns(2)
-        with col1:
-            st.success(f"🏑 **Jugador más votado:**\n\n{jugador_ganador} ({votos_jugador} votos)")
-        with col2:
-            st.info(f"🧤 **Arquero más votado:**\n\n{arquero_ganador} ({votos_arquero} votos)")
-    else:
-        st.warning("Aún no se han recibido votos para calcular a los ganadores.")
