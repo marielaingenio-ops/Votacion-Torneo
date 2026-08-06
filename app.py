@@ -150,7 +150,23 @@ if vista == "⚙️ Director de Torneo":
                     st.write(f"- {jefe}")
             else:
                 st.info("Aún no hay votos registrados en la planilla.")
-
+    st.divider()
+    st.subheader("🏆 Resultados Finales")
+    
+    if not df_votos.empty:
+        jugador_ganador = df_votos["Mejor Jugador"].value_counts().idxmax()
+        votos_jugador = df_votos["Mejor Jugador"].value_counts().max()
+        
+        arquero_ganador = df_votos["Mejor Arquero"].value_counts().idxmax()
+        votos_arquero = df_votos["Mejor Arquero"].value_counts().max()
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.success(f"🏑 **Jugador más votado:**\n\n{jugador_ganador} ({votos_jugador} votos)")
+        with col2:
+            st.info(f"🧤 **Arquero más votado:**\n\n{arquero_ganador} ({votos_arquero} votos)")
+    else:
+        st.warning("Aún no se han recibido votos para calcular a los ganadores.")
 # ==========================================
 # VISTA: VOTACIÓN PÚBLICA (JEFES DE EQUIPO)
 # ==========================================
