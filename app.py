@@ -171,7 +171,7 @@ else:
 # ==========================================
 # VISTA: VOTACIÓN PÚBLICA (JEFES DE EQUIPO)
 # ==========================================
- if vista == "🏆 Votación Pública":
+ elif vista == "🏆 Votación Pública":
     col_logo, col_texto = st.columns([1, 5])
     with col_logo:
         st.image("logo.png", use_container_width=True)
