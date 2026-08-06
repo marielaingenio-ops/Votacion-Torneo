@@ -92,7 +92,7 @@ if param_vista == "votante":
 else:
     vista = st.sidebar.radio("Navegación:", ["🏆 Votación Pública", "⚙️ Director de Torneo"])
 st.sidebar.divider()
-st.sidebar.markdown("<div style='text-align: center; color: gray;'><small>Desarrollado con 💻 por <b>Mariela</b></small></div>", unsafe_allow_html=True)
+st.sidebar.markdown("<div style='text-align: center; color: gray;'><small>Desarrollado con 💻 por <b>Mariela Rosales</b></small></div>", unsafe_allow_html=True)
 # ==========================================
 # VISTA: DIRECTOR DE TORNEO (ADMINISTRADOR)
 # ==========================================
