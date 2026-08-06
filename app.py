@@ -159,7 +159,7 @@ elif vista == "🏆 Votación Pública":
     with col_logo:
         st.image("logo.png", use_container_width=True)
     with col_texto:
-        st.title("Elección de los Mejores del Torneo")
+        st.title("Elección de los mejores del Torneo")
     if not datos:
         st.warning("⏳ El Director de Torneo está configurando el sistema.")
     else:
