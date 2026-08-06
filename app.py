@@ -90,7 +90,7 @@ param_vista = st.query_params.get("vista", "menu")
 if param_vista == "votante":
     vista = "🏆 Votación Pública"
 else:
-    vista = st.sidebar.radio("Navegación:", ["🏆 Votación Pública", "⚙️ Mesa de Control"])
+    vista = st.sidebar.radio("Navegación:", ["🏆 Votación Pública", "⚙️ Director de Torneo"])
 
 # ==========================================
 # VISTA: DIRECTOR DE TORNEO (ADMINISTRADOR)
