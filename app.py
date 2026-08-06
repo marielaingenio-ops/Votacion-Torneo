@@ -150,6 +150,7 @@ if vista == "⚙️ Director de Torneo":
                     st.write(f"- {jefe}")
             else:
                 st.info("Aún no hay votos registrados en la planilla.")
+   if vista == "⚙️ Director de Torneo":              
     st.divider()
     st.subheader("🏆 Resultados Finales")
     
