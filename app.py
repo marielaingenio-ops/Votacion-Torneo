@@ -93,8 +93,6 @@ if param_admin == "si":
 else:
     # Todo el público va directo a votar, no ven menú lateral
     vista = "🏆 Votación Pública"
-st.divider()
-st.markdown("<div style='text-align: center; color: gray;'><small>Desarrollado con 💻 por <b>Mariela Rosales</b></small></div>", unsafe_allow_html=True)
 # ==========================================
 # VISTA: DIRECTOR DE TORNEO (ADMINISTRADOR)
 # ==========================================
