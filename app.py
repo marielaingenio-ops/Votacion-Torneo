@@ -238,8 +238,13 @@ elif vista == "🏆 Votación Pública":
                                 {"Identificador_Votante": identificador_unico, "Categoria": "Arquero", "Candidato_Elegido": arq2},
                             ])
                             
+                            # Actualizamos la planilla
                             df_actualizado = pd.concat([df_votos, nuevos_votos], ignore_index=True)
                             conn.update(data=df_actualizado)
-                            st.balloons() # ¡Agregamos la celebración aquí!
-                            st.success("✅ ¡Tus votos han sido enviados! Puedes cerrar esta ventana.")
-                            st.rerun()
+                            
+                            st.balloons()
+                            st.success("✅ ¡Tus votos han sido enviados con éxito! La pantalla se reiniciará en unos segundos...")
+                            
+                            import time
+                            time.sleep(4)  # Espera 4 segundos para que se vean los globos
+                            st.rerun()     # Ahora sí, limpia la pantalla
