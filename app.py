@@ -84,10 +84,10 @@ def procesar_texto_dat(contenido):
 
 # --- ACCESO Y MENÚ SECRETO ---
 param_admin = st.query_params.get("admin", "no")
-
+st.success("Acceso autorizado al Director/a de Torneo.")
 if param_admin == "si":
     st.sidebar.image("logo.png", width=150)
-    st.sidebar.title("Menú de Control")
+    st.sidebar.title("Menú del Director/a de Torneo")
     vista = st.sidebar.radio("Navegación:", ["🏆 Votación Pública", "⚙️ Director de Torneo"])
 else:
     vista = "🏆 Votación Pública"
@@ -273,7 +273,7 @@ elif vista == "🏆 Votación Pública":
                         arq2 = elegir_candidato("Arquero 2", "arq2", es_arquero=True)
                         
                     st.divider()
-                    if st.button("🗳️ Enviar votos a la Mesa de Control", type="primary", use_container_width=True):
+                    if st.button("🗳️ Enviar votos al Director/a de Torneo", type="primary", use_container_width=True):
                         selecciones = [jc1, jc2, arq1, arq2]
                         
                         if None in selecciones:
@@ -296,4 +296,4 @@ elif vista == "🏆 Votación Pública":
 
 # --- FIRMA (Siempre visible al final) ---
 st.divider()
-st.markdown("<div style='text-align: center; color: gray;'><small>Desarrollado con 💻 por <b>Mariela</b></small></div>", unsafe_allow_html=True)
+st.markdown("<div style='text-align: center; color: gray;'><small>Desarrollado con 💻 por <b>Mariela Rosales</b></small></div>", unsafe_allow_html=True)
