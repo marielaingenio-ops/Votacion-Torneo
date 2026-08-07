@@ -163,6 +163,8 @@ if vista == "⚙️ Director de Torneo":
                             df_padron.at[index, "Tipo"] = "Jugador"
                             
                     conn.update(worksheet="Padron", data=df_padron)
+                    # ESTA ES LA LÍNEA NUEVA QUE BORRA LA MEMORIA:
+                    st.cache_data.clear()
                     st.success("¡Arqueros actualizados con éxito en Google Sheets!")
                     st.rerun()
                     
