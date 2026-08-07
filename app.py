@@ -122,8 +122,16 @@ if vista == "⚙️ Director de Torneo":
                         
                 nuevo_df = pd.DataFrame(registros)
                 if not nuevo_df.empty:
+                    # ORDEN 1: Vaciar por completo la pestaña vieja en Google Sheets
+                    conn.clear(worksheet="Padron")
+                    
+                    # ORDEN 2: Escribir los datos nuevos
                     conn.update(worksheet="Padron", data=nuevo_df)
-                    st.success("¡Equipos y delegados guardados exitosamente en la nube!")
+                    
+                    # ORDEN 3: Borrar la memoria fotográfica (caché) de la aplicación
+                    st.cache_data.clear()
+                    
+                    st.success("¡Equipos anteriores borrados y nuevo padrón guardado exitosamente!")
                     st.rerun()
                 else:
                     st.error("El archivo no contenía información válida.")
