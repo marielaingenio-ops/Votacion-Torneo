@@ -84,7 +84,7 @@ def procesar_texto_dat(contenido):
 
 # --- ACCESO Y MENÚ SECRETO ---
 param_admin = st.query_params.get("admin", "no")
-st.success("Acceso autorizado al Director/a de Torneo.")
+
 if param_admin == "si":
     st.sidebar.image("logo.png", width=150)
     st.sidebar.title("Menú del Director/a de Torneo")
@@ -100,7 +100,7 @@ if vista == "⚙️ Director de Torneo":
     password = st.text_input("Ingrese contraseña de Director/a de Torneo:", type="password")
     
     if password == "admin123":
-        st.success("Acceso autorizado a la Mesa de Control.")
+        st.success("Acceso autorizado al Director/a de Torneo.")
         
         # 1. CARGA DE NUEVO PADRÓN
         st.divider()
