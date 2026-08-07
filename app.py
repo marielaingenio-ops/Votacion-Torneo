@@ -110,6 +110,13 @@ if vista == "⚙️ Director de Torneo":
             st.divider()
             st.subheader("1. Separar arqueros")
             st.markdown("Selecciona los arqueros de cada equipo para que no aparezcan en la lista de jugadores de campo.")
+            # ---> NUEVO BOTÓN PARA LIMPIAR TORNEOS ANTERIORES <---
+            if st.button("🗑️ Borrar datos del torneo anterior (Limpiar arqueros)"):
+                if os.path.exists(ARCHIVO_ARQUEROS):
+                    os.remove(ARCHIVO_ARQUEROS)
+                st.success("✅ Lista de arqueros limpia para el nuevo torneo.")
+                st.rerun() # Recarga la página para mostrar todo en blanco
+            # --------------------------------------------------------
             
             arqueros_actuales = cargar_arqueros()
             nuevos_arqueros = []
