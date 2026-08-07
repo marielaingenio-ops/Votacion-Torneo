@@ -10,7 +10,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 # 1. Leer los Votos
 try:
-    df_votos = conn.read(worksheet="Votos", usecols=[0, 1, 2])
+    df_votos = conn.read(worksheet="Votos", usecols=[0, 1, 2], ttl=0)
     df_votos = df_votos.dropna(how="all") 
 except Exception:
     df_votos = pd.DataFrame(columns=["Identificador_Votante", "Categoria", "Candidato_Elegido"])
@@ -19,7 +19,7 @@ jefes_que_votaron = set(df_votos["Identificador_Votante"].dropna().unique()) if 
 
 # 2. Leer el Padrón (Equipos, Jugadores y Jefes)
 try:
-    df_padron = conn.read(worksheet="Padron", usecols=[0, 1, 2])
+    df_padron = conn.read(worksheet="Padron", usecols=[0, 1, 2], ttl=0)
     df_padron = df_padron.dropna(how="all")
 except Exception:
     df_padron = pd.DataFrame(columns=["Equipo", "Tipo", "Nombre"])
